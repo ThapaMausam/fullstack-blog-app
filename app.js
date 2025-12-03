@@ -1,7 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const connectToDatabase = require("./database"); // Since database has index.js so it doesn't include it in the address
+const Blog = require("./model/blogModel");
 const app = express();
+app.use(express.json());
 
 connectToDatabase();
 
@@ -15,6 +17,13 @@ app.get("/", (req, res) => {
 app.get("/about", (req, res) => {
   res.status(200).json({
     message: "This is about page",
+  });
+});
+
+app.post("/blog", (req, res) => {
+  console.log(req.body);
+  res.status(200).json({
+    message: "This is blog model",
   });
 });
 
