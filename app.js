@@ -20,10 +20,23 @@ app.get("/about", (req, res) => {
   });
 });
 
-app.post("/blog", (req, res) => {
-  console.log(req.body);
+app.post("/blog", async (req, res) => {
+  // console.log(req.body);
+  // const title = req.body.title;
+  const { title, subtitle, description, image } = req.body;
+  if (!title || !subtitle || !description || !image) {
+    return res.status(400).json({
+      message: "Please enter all details.",
+    });
+  }
+  await Blog.create({
+    title: title,
+    subtitle: subtitle,
+    description: description,
+    image: image,
+  });
   res.status(200).json({
-    message: "This is blog model",
+    message: "Blog API hit successfully.",
   });
 });
 
