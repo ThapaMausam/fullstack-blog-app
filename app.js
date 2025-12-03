@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const connectToDatabase = require("./database"); // Since database has index.js so it doesn't include it in the address
 const app = express();
@@ -17,7 +18,7 @@ app.get("/about", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server has been started.");
 });
 
