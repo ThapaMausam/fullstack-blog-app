@@ -1,21 +1,39 @@
 import { useState } from "react";
 import NavBar from "../components/NavBar";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateBlog() {
+
+    const navigate = useNavigate();
     
     const [formData, setFormData] = useState({
         title: '',
         subtitle: '',
         description: '',
-        image: null,
+        image: '',
     });
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: value
+            [name]: name === "image" ? e.target.files[0] : value
         });
+    }
+
+    const submitForm = async (e) => {
+        e.preventDefault();
+        const response = await axios.post("http://localhost:3000/blog", formData, {
+            headers : {
+                "Content-Type" : "multipart/form-data",
+            }
+        });
+        if (response.status === 200) {
+            navigate("/")
+        } else {
+            alert("Something went wrong.")
+        }
     }
 
     return (
@@ -27,7 +45,7 @@ export default function CreateBlog() {
                     Create New Blog Post
                 </h2>
 
-                <form className="bg-white shadow-lg rounded-xl p-8 space-y-8">
+                <form className="bg-white shadow-lg rounded-xl p-8 space-y-8" onSubmit={submitForm}>
                     {/* Title */}
                     <div>
                     <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
@@ -92,6 +110,7 @@ export default function CreateBlog() {
                         file:bg-indigo-50 file:text-indigo-700
                         hover:file:bg-indigo-100
                         cursor-pointer transition"
+                        onChange = {handleInputChange}
                     />
                     </div>
 

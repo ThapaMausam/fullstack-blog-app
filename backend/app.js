@@ -5,6 +5,11 @@ const fs = require("fs");
 const Blog = require("./model/blogModel");
 const app = express();
 const { multer, storage } = require("./middleware/multerConfig.js");
+/**
+ * Multer middleware instance configured with the specified storage engine.
+ * Used to handle file uploads in Express routes by parsing multipart/form-data requests.
+ * @type {import('multer').Multer}
+ */
 const upload = multer({ storage: storage });
 const cors = require("cors");
 
@@ -37,8 +42,9 @@ app.post("/blog", upload.single("image"), async (req, res) => {
   // console.log(req.body);
   // const title = req.body.title;
   const { title, subtitle, description } = req.body;
-  console.log(req.file);
+  // console.log(req.file);
   const filename = req.file.filename;
+  // console.log(filename);
   // const {filename} = req.file;
 
   if (!title || !subtitle || !description || !filename) {
@@ -145,6 +151,6 @@ app.patch("/blog/:id", upload.single("image"), async (req, res) => {
 // Very Very Imp
 app.use(express.static("./storage")); // Helps Frontend access the files
 
-app.listen(process.env.PORT, "0.0.0.0", () => {
+app.listen(process.env.PORT, () => {
   console.log("Server has been started.");
 });

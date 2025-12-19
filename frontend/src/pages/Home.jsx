@@ -11,8 +11,6 @@ function Home() {
         const result = await axios.get("http://192.168.1.70:3000/blog");
         setData(result.data.data); // JSON is always stored in result.data
     }
-
-    console.log(data);
     
     useEffect(() => {
         fetchBlogs()
