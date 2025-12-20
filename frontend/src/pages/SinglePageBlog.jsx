@@ -14,14 +14,14 @@ export default function SinglePageBlog() {
     const [blog, setBlog] = useState({})
 
     const fetchSingleBlog = async () => {
-        const response = await axios.get(`http://192.168.1.70:3000/blog/${data.id}`)
+        const response = await axios.get(`https://blog-project-g72m.onrender.com/blog/${data.id}`)
         setBlog(response.data.data)
     }
 
     console.log(blog);
 
     const deleteBlog = async () => {
-      await axios.delete(`http://192.168.1.70:3000/blog/${data.id}`)
+      await axios.delete(`https://blog-project-g72m.onrender.com/blog/${data.id}`)
       navigate('/')
     }
 
@@ -50,7 +50,7 @@ export default function SinglePageBlog() {
         <div className="mb-12">
           <div className="relative overflow-hidden rounded-2xl shadow-xl bg-linear-to-r from-blue-50 to-gray-100 aspect-video flex items-center justify-center">
             <img 
-              src={`http://localhost:3000/${blog.image}`}
+              src={`https://blog-project-g72m.onrender.com/${blog.image}`}
               alt="Image" 
               className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
             />

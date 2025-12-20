@@ -8,7 +8,7 @@ function Home() {
     const [data, setData] = useState([]);
 
     const fetchBlogs = async () => {
-        const result = await axios.get("http://192.168.1.70:3000/blog");
+        const result = await axios.get("https://blog-project-g72m.onrender.com/blog");
         setData(result.data.data); // JSON is always stored in result.data
     }
     

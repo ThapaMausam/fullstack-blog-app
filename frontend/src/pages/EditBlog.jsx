@@ -24,13 +24,13 @@ export default function EditBlog() {
     }
 
     const fetchBlogData = async () => {
-        const response = await axios.get("http://localhost:3000/blog/" + id)
+        const response = await axios.get("https://blog-project-g72m.onrender.com/blog/" + id)
         setData(response.data.data)
     }
 
     const submitForm = async (e) => {
         e.preventDefault()
-        const response = await axios.patch("http://localhost:3000/blog/" + id, data, {
+        const response = await axios.patch("https://blog-project-g72m.onrender.com/blog/" + id, data, {
             headers: {
                 "Content-Type": "multipart/form-data",
             }
