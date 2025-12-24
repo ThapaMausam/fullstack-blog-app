@@ -1,6 +1,6 @@
-# 📝 Blog Project
+# 📝 Full Stack Blog Application
 
-A full-featured blog application that allows users to **create, edit, view, and delete blog posts** through a clean and intuitive interface. The project focuses on implementing complete **CRUD functionality** while following modern frontend development best practices.
+A modern blog application that enables users to create, edit, view, and delete blog posts through a clean and intuitive interface.
 
 ---
 
